@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import Listing from './Listing';
 import TitleBar from './TitleBar';
+import GlobalStyle from '../styles/GlobalStyle';
 
 const ListingBlock = styled.div`
   display: flex;
@@ -68,6 +69,7 @@ class App extends React.Component {
     const { listings, setCount, currentSet } = this.state;
     return (
       <ListingWrapper setCount={setCount}>
+        <GlobalStyle />
         <TitleBar
           setCount={setCount}
           currentSet={currentSet}

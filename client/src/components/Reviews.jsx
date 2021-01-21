@@ -8,7 +8,7 @@ const GreyText = styled.span`
 
 const ReviewWrapper = styled.div`
   margin 4px 0 0 0;
-  font-size: 16px;
+  font-size: 12px;
 `;
 
 const Reviews = (props) => {

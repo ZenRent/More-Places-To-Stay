@@ -15,8 +15,8 @@ const NavButton = styled.button`
   border-radius: 50% !important;;
   background-color: rgba(255, 255, 255, 0.9);
   color: black;
-  height: 32px;
-  width: 32px;
+  height: 26px;
+  width: 26px;
   box-shadow: transparent 0px 0px 0px 1px, transparent 0px 0px 0px 4px, rgba(0, 0, 0, 0.18) 0px 2px 4px;
   margin-left: 3px;
   cursor: pointer;
@@ -31,6 +31,11 @@ const TitleWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+const ComponentTitle = styled.span`
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: .005em;
+`;
 
 const TitleBar = (props) => {
   const {
@@ -43,7 +48,7 @@ const TitleBar = (props) => {
     <div>
       <button type="button" onClick={changeSize}>Change Size</button>
       <TitleWrapper>
-        <h3>More places to stay</h3>
+        <ComponentTitle>More places to stay</ComponentTitle>
         <NavBar>
           {`${currentSet} / ${setCount}`}
           <div>
