@@ -6,4 +6,22 @@ const db = mongoose.connect(
   { useNewUrlParser: true, useUnifiedTopology: true },
 );
 
-module.exports = db;
+const listingSchema = new mongoose.Schema({
+  nearby: Array,
+});
+const Listing = mongoose.model('Listing', listingSchema);
+
+const listSchema = new mongoose.Schema({
+  title: String, // required
+  count: Number,
+  thumbnailUrl: String,
+  listings: Array, // of listing _id numbers, REQUIRED defaul = []
+});
+
+const List = mongoose.model('List', listSchema);
+
+module.exports = {
+  Listing,
+  List,
+  db,
+};
