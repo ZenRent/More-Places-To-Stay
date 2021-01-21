@@ -7,7 +7,7 @@ import Listing from '../../client/src/Listing';
 Enzyme.configure({ adapter: new Adapter() });
 
 // eslint-disable-next-line no-undef
-test('Listing Components receive listing objects', () => {
+test('Listing Components successfully receive listing objects', () => {
   const wrapper = mount(<Listing listing={{
     avgReview: 4.29,
     baseRate: 392,
