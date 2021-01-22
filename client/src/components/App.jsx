@@ -3,7 +3,17 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import Listing from './Listing';
 import TitleBar from './TitleBar';
+import ListsModal from './Lists/ListsModal';
 import GlobalStyle from '../styles/GlobalStyle';
+import listArray from '../resources/TemporaryList';
+
+const AppWrapper = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+`;
 
 const ListingBlock = styled.div`
   display: flex;
@@ -23,11 +33,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       listings: [],
-      setCount: 4,
+      lists: listArray,
+      setCount: 3,
       currentSet: 1,
+      showListsModal: false,
     };
     this.changeSet = this.changeSet.bind(this);
     this.changeSize = this.changeSize.bind(this);
+    this.toggleLists = this.toggleLists.bind(this);
   }
 
   componentDidMount() {
@@ -42,9 +55,12 @@ class App extends React.Component {
   }
 
   changeSize() {
-    const { setCount } = this.state;
+    const { setCount, currentSet } = this.state;
     this.setState({
       setCount: setCount === 3 ? 4 : 3,
+    });
+    this.setState({
+      currentSet: (currentSet === setCount && setCount === 4) ? 3 : currentSet,
     });
   }
 
@@ -65,21 +81,43 @@ class App extends React.Component {
     }
   }
 
+  toggleLists() {
+    const { showListsModal } = this.state;
+    this.setState({
+      showListsModal: !showListsModal,
+    });
+  }
+
   render() {
-    const { listings, setCount, currentSet } = this.state;
+    const {
+      listings,
+      lists,
+      setCount,
+      currentSet,
+      showListsModal,
+    } = this.state;
     return (
-      <ListingWrapper setCount={setCount}>
-        <GlobalStyle />
-        <TitleBar
-          setCount={setCount}
-          currentSet={currentSet}
-          changeSet={this.changeSet}
-          changeSize={this.changeSize}
-        />
-        <ListingBlock currentSet={currentSet} setCount={setCount}>
-          {listings.map((listing) => (<Listing listing={listing} key={listing.listingId} />))}
-        </ListingBlock>
-      </ListingWrapper>
+      <AppWrapper>
+        {showListsModal ? <ListsModal lists={lists} toggleLists={this.toggleLists} /> : ''}
+        <ListingWrapper setCount={setCount}>
+          <GlobalStyle />
+          <TitleBar
+            setCount={setCount}
+            currentSet={currentSet}
+            changeSet={this.changeSet}
+            changeSize={this.changeSize}
+          />
+          <ListingBlock currentSet={currentSet} setCount={setCount}>
+            {listings.map((listing) => (
+              <Listing
+                listing={listing}
+                key={listing.listingId}
+                toggleLists={this.toggleLists}
+              />
+            ))}
+          </ListingBlock>
+        </ListingWrapper>
+      </AppWrapper>
     );
   }
 }

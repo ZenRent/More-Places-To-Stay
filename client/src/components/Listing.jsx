@@ -22,16 +22,19 @@ const ListingWrapper = styled.div`
 const PhotoWrapper = styled.div`
 `;
 
-const Listing = ({ listing }) => (
-  <ListingWrapper className="listing">
-    <PhotoWrapper>
-      <Heart savedList={listing.savedList} />
-      {listing.isSuperhost ? <Superhost /> : ''}
-      <Image src={listing.thumbnailUrl} alt="a home available for short-term rentals" />
-    </PhotoWrapper>
-    <Details key={listing.listingId} listing={listing} />
-  </ListingWrapper>
-);
+const Listing = (props) => {
+  const { listing, toggleLists } = props;
+  return (
+    <ListingWrapper className="listing">
+      <PhotoWrapper>
+        <Heart savedList={listing.savedList} toggleLists={toggleLists} />
+        {listing.isSuperhost ? <Superhost /> : ''}
+        <Image src={listing.thumbnailUrl} alt="a home available for short-term rentals" />
+      </PhotoWrapper>
+      <Details key={listing.listingId} listing={listing} />
+    </ListingWrapper>
+  );
+};
 
 Listing.propTypes = {
   listing: PropTypes.shape({
@@ -47,6 +50,7 @@ Listing.propTypes = {
     shareType: PropTypes.string,
     thumbnailUrl: PropTypes.string,
   }).isRequired,
+  toggleLists: PropTypes.func.isRequired,
 };
 
 export default Listing;
