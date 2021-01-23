@@ -46,9 +46,8 @@ const TitleBar = (props) => {
   } = props;
   return (
     <div>
-      <button type="button" onClick={changeSize}>Change Size</button>
       <TitleWrapper>
-        <ComponentTitle>More places to stay</ComponentTitle>
+        <ComponentTitle onClick={changeSize}>More places to stay</ComponentTitle>
         <NavBar>
           {`${currentSet} / ${setCount}`}
           <div>
