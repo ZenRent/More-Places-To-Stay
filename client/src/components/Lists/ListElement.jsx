@@ -30,9 +30,16 @@ const Image = styled.img`
 `;
 
 const ListElement = (props) => {
-  const { img, title, count } = props;
+  const {
+    img,
+    title,
+    count,
+    changeCount,
+    index,
+    closeModal,
+  } = props;
   return (
-    <Wrapper>
+    <Wrapper onClick={() => { changeCount(index, 1); closeModal(); }}>
       <Image src={img} alt="a related destination" />
       <Details>
         {count ? <div>Any time</div> : ''}

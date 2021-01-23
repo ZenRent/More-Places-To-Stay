@@ -41,6 +41,7 @@ class App extends React.Component {
     this.changeSet = this.changeSet.bind(this);
     this.changeSize = this.changeSize.bind(this);
     this.toggleLists = this.toggleLists.bind(this);
+    this.changeListCount = this.changeListCount.bind(this);
   }
 
   componentDidMount() {
@@ -61,6 +62,19 @@ class App extends React.Component {
     });
     this.setState({
       currentSet: (currentSet === setCount && setCount === 4) ? 3 : currentSet,
+    });
+  }
+
+  changeListCount(targetIndex, addend) {
+    const { lists } = this.state;
+    const newLists = lists.map((list, i) => {
+      if (i === targetIndex) {
+        list.count += addend;
+      }
+      return list;
+    });
+    this.setState({
+      lists: newLists,
     });
   }
 
@@ -98,7 +112,7 @@ class App extends React.Component {
     } = this.state;
     return (
       <AppWrapper>
-        {showListsModal ? <ListsModal lists={lists} toggleLists={this.toggleLists} /> : ''}
+        {showListsModal ? <ListsModal lists={lists} toggleLists={this.toggleLists} changeCount={this.changeListCount} /> : ''}
         <ListingWrapper setCount={setCount}>
           <GlobalStyle />
           <TitleBar

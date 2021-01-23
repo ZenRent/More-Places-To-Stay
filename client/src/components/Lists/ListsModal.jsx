@@ -38,8 +38,19 @@ const ListsWrapper = styled.div`
 
 const ListHeader = styled.div`
   text-align: center;
-  font-weight: 800px;
+  font-weight: bold;
   padding: 12px;
+`;
+
+const CloseButton = styled.svg`
+  display: block;
+  fill: none;
+  height: 16px;
+  width: 16px;
+  stroke: currentcolor;
+  stroke-width: 3;
+  overflow: visible;
+  float: left;
 `;
 
 class ListsModal extends React.Component {
@@ -49,34 +60,62 @@ class ListsModal extends React.Component {
       show: false,
     };
     this.toggleView = this.toggleView.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount() {
     setTimeout(this.toggleView, 0);
   }
 
+  // toggleView() {
+  //   const { show } = this.state;
+  //   this.setState({
+  //     show: !show,
+  //   });
+  // }
+
   toggleView() {
     const { show } = this.state;
+    const { toggleLists } = this.props;
     this.setState({
       show: !show,
     });
   }
 
+  closeModal() {
+    const { toggleLists } = this.props;
+    this.toggleView();
+    setTimeout(toggleLists, 500);
+  }
+
   render() {
-    const { toggleLists, lists } = this.props;
+    const { lists, changeCount } = this.props;
     const { show } = this.state;
     return (
       <div>
         <ModalBackdrop
           show={show}
-          onClick={() => { this.toggleView(); setTimeout(toggleLists, 500)(); }}
+          onClick={this.closeModal}
         />
         <Modal show={show}>
-          <ListHeader>Save to a list</ListHeader>
+          <ListHeader>
+            <CloseButton viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" onClick={this.closeModal}>
+              <path d="m6 6 20 20" />
+              <path d="m26 6-20 20" />
+            </CloseButton>
+            Save to a list
+          </ListHeader>
           <ListsWrapper>
             <ListElement img="" title="Create a new list" count={0} />
-            {lists.map(({ title, count, thumbnailUrl }) => (
-              <ListElement img={thumbnailUrl} title={title} count={count} />
+            {lists.map(({ title, count, thumbnailUrl }, i) => (
+              <ListElement
+                img={thumbnailUrl}
+                title={title}
+                count={count}
+                index={i}
+                changeCount={changeCount}
+                closeModal={this.closeModal}
+              />
             ))}
           </ListsWrapper>
         </Modal>

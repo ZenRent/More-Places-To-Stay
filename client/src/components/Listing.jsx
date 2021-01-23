@@ -27,7 +27,7 @@ const Listing = (props) => {
   return (
     <ListingWrapper className="listing">
       <PhotoWrapper>
-        <Heart savedList={listing.savedList} toggleLists={toggleLists} />
+        <Heart savedList={listing.savedList} toggleLists={toggleLists} id={listing.listingId} />
         {listing.isSuperhost ? <Superhost /> : ''}
         <Image src={listing.thumbnailUrl} alt="a home available for short-term rentals" />
       </PhotoWrapper>
