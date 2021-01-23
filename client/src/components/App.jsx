@@ -5,7 +5,6 @@ import Listing from './Listing';
 import TitleBar from './TitleBar';
 import ListsModal from './Lists/ListsModal';
 import GlobalStyle from '../styles/GlobalStyle';
-import listArray from '../resources/TemporaryList';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -33,7 +32,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       listings: [],
-      lists: listArray,
+      lists: [],
       setCount: 3,
       currentSet: 1,
       showListsModal: false,
@@ -48,7 +47,8 @@ class App extends React.Component {
     axios.get('/api/more')
       .then((response) => {
         this.setState({
-          listings: response.data,
+          listings: response.data.listings,
+          lists: response.data.lists,
         });
       })
       .catch(() => {

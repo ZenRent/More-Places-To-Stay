@@ -26,4 +26,4 @@ const listArray = [
   },
 ];
 
-export default listArray;
+module.exports = listArray;
