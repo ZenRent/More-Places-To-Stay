@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
   margin: 0 12px 0 12px;
-  padding: 0 12px 0 12px;
+  padding: 6px 12px 6px 12px;
   border-radius: 4px;
   display: flex;
   flex-flow: row nowrap;
@@ -43,9 +43,9 @@ const ListElement = (props) => {
     <Wrapper onClick={() => { addToList(index); markListingAsSaved(index); closeModal(); }}>
       <Image src={img} alt="a related destination" />
       <Details>
-        {count ? <div>Any time</div> : ''}
+        <div>Any time</div>
         <div>{title}</div>
-        {count ? <div>{`${count} stays`}</div> : ''}
+        <div>{`${count} stays`}</div>
       </Details>
     </Wrapper>
   );

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 // import ModalBackdrop from '../../styles/ModalBackdrop';
 import ListElement from './ListElement';
+import CreateNewList from './CreateNewList';
 
 const Modal = styled.div`
   width: 568px;
@@ -33,7 +34,6 @@ const ListsWrapper = styled.div`
   justify-content: flext-start;
   justify-content: flex-start;
   align: left;
-  padding-left: 5px;
 `;
 
 const ListHeader = styled.div`
@@ -105,6 +105,7 @@ class ListsModal extends React.Component {
             Save to a list
           </ListHeader>
           <ListsWrapper>
+            <CreateNewList />
             {lists.map(({ title, count, thumbnailUrl }, i) => (
               <ListElement
                 img={thumbnailUrl}
