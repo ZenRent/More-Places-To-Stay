@@ -23,11 +23,22 @@ const PhotoWrapper = styled.div`
 `;
 
 const Listing = (props) => {
-  const { listing, toggleLists } = props;
+  const {
+    listing,
+    toggleListsModal,
+    designateListingToSave,
+    removeFromList,
+  } = props;
   return (
     <ListingWrapper className="listing">
       <PhotoWrapper>
-        <Heart savedList={listing.savedList} toggleLists={toggleLists} id={listing.listingId} />
+        <Heart
+          savedList={listing.savedList}
+          toggleListsModal={toggleListsModal}
+          id={listing.listingId}
+          designateListingToSave={designateListingToSave}
+          removeFromList={removeFromList}
+        />
         {listing.isSuperhost ? <Superhost /> : ''}
         <Image src={listing.thumbnailUrl} alt="a home available for short-term rentals" />
       </PhotoWrapper>
@@ -46,11 +57,13 @@ Listing.propTypes = {
     isSuperhost: PropTypes.bool,
     listingId: PropTypes.number,
     reviewCount: PropTypes.number,
-    savedList: PropTypes.string,
+    savedList: PropTypes.number,
     shareType: PropTypes.string,
     thumbnailUrl: PropTypes.string,
   }).isRequired,
-  toggleLists: PropTypes.func.isRequired,
+  toggleListsModal: PropTypes.func.isRequired,
+  designateListingToSave: PropTypes.func.isRequired,
+  removeFromList: PropTypes.func.isRequired,
 };
 
 export default Listing;

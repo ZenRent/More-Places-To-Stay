@@ -9,7 +9,6 @@ const port = 3000;
 app.use(express.static('public'));
 
 app.get('/api/more', (req, res) => {
-  console.log(listData);
   db.Listing.find()
     .then((listingArrays) => {
       const i = (Math.floor(Math.random() * 100));

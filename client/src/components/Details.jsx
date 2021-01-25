@@ -49,7 +49,7 @@ Details.propTypes = {
     isSuperhost: PropTypes.bool,
     listingId: PropTypes.number,
     reviewCount: PropTypes.number,
-    savedList: PropTypes.string,
+    savedList: PropTypes.number,
     shareType: PropTypes.string,
     thumbnailUrl: PropTypes.string,
   }).isRequired,

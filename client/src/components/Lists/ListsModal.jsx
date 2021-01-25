@@ -76,20 +76,19 @@ class ListsModal extends React.Component {
 
   toggleView() {
     const { show } = this.state;
-    const { toggleLists } = this.props;
     this.setState({
       show: !show,
     });
   }
 
   closeModal() {
-    const { toggleLists } = this.props;
+    const { toggleListsModal } = this.props;
     this.toggleView();
-    setTimeout(toggleLists, 500);
+    setTimeout(toggleListsModal, 500);
   }
 
   render() {
-    const { lists, changeCount } = this.props;
+    const { lists, addToList, markListingAsSaved } = this.props;
     const { show } = this.state;
     return (
       <div>
@@ -106,15 +105,16 @@ class ListsModal extends React.Component {
             Save to a list
           </ListHeader>
           <ListsWrapper>
-            <ListElement img="" title="Create a new list" count={0} />
             {lists.map(({ title, count, thumbnailUrl }, i) => (
               <ListElement
                 img={thumbnailUrl}
                 title={title}
                 count={count}
                 index={i}
-                changeCount={changeCount}
+                key={title}
+                addToList={addToList}
                 closeModal={this.closeModal}
+                markListingAsSaved={markListingAsSaved}
               />
             ))}
           </ListsWrapper>
@@ -125,12 +125,14 @@ class ListsModal extends React.Component {
 }
 
 ListsModal.propTypes = {
-  toggleLists: PropTypes.func.isRequired,
+  toggleListsModal: PropTypes.func.isRequired,
   lists: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     count: PropTypes.number.isRequired,
     thumbnailUrl: PropTypes.string.isRequired,
   })).isRequired,
+  markListingAsSaved: PropTypes.func.isRequired,
+  addToList: PropTypes.func.isRequired,
 };
 
 export default ListsModal;

@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
@@ -36,11 +37,15 @@ class App extends React.Component {
       setCount: 3,
       currentSet: 1,
       showListsModal: false,
+      listingToMarkSaved: -1,
     };
     this.changeSet = this.changeSet.bind(this);
     this.changeSize = this.changeSize.bind(this);
-    this.toggleLists = this.toggleLists.bind(this);
-    this.changeListCount = this.changeListCount.bind(this);
+    this.toggleListsModal = this.toggleListsModal.bind(this);
+    this.addToList = this.addToList.bind(this);
+    this.designateListingToSave = this.designateListingToSave.bind(this);
+    this.markListingAsSaved = this.markListingAsSaved.bind(this);
+    this.removeFromList = this.removeFromList.bind(this);
   }
 
   componentDidMount() {
@@ -65,16 +70,49 @@ class App extends React.Component {
     });
   }
 
-  changeListCount(targetIndex, addend) {
+  assignList(id, listIndex) {
+    const { listings } = this.state;
+    const newListings = listings.map((listing) => {
+      if (listing.listingId === id) {
+        listing.savedList = listIndex;
+      }
+      return listing;
+    });
+    this.setState({
+      listings: newListings,
+    });
+  }
+
+  addToList(targetIndex /* , id */) {
     const { lists } = this.state;
     const newLists = lists.map((list, i) => {
       if (i === targetIndex) {
-        list.count += addend;
+        list.count += 1;
       }
       return list;
     });
     this.setState({
       lists: newLists,
+    });
+  }
+
+  removeFromList(listingId, listIndex) {
+    const { lists, listings } = this.state;
+    const newLists = lists.map((list, i) => {
+      if (i === listIndex) {
+        list.count -= 1;
+      }
+      return list;
+    });
+    const newListings = listings.map((listing) => {
+      if (listing.listingId === listingId) {
+        listing.savedList = -1;
+      }
+      return listing;
+    });
+    this.setState({
+      lists: newLists,
+      listings: newListings,
     });
   }
 
@@ -95,10 +133,29 @@ class App extends React.Component {
     }
   }
 
-  toggleLists() {
+  toggleListsModal() {
     const { showListsModal } = this.state;
     this.setState({
       showListsModal: !showListsModal,
+    });
+  }
+
+  designateListingToSave(id) {
+    this.setState({
+      listingToMarkSaved: id,
+    });
+  }
+
+  markListingAsSaved(listIndex) {
+    const { listings, listingToMarkSaved } = this.state;
+    const newListings = listings.map((listing) => {
+      if (listing.listingId === listingToMarkSaved) {
+        listing.savedList = listIndex;
+      }
+      return listing;
+    });
+    this.setState({
+      listings: newListings,
     });
   }
 
@@ -112,7 +169,7 @@ class App extends React.Component {
     } = this.state;
     return (
       <AppWrapper>
-        {showListsModal ? <ListsModal lists={lists} toggleLists={this.toggleLists} changeCount={this.changeListCount} /> : ''}
+        {showListsModal ? <ListsModal lists={lists} toggleListsModal={this.toggleListsModal} addToList={this.addToList} markListingAsSaved={this.markListingAsSaved} /> : ''}
         <ListingWrapper setCount={setCount}>
           <GlobalStyle />
           <TitleBar
@@ -126,7 +183,9 @@ class App extends React.Component {
               <Listing
                 listing={listing}
                 key={listing.listingId}
-                toggleLists={this.toggleLists}
+                toggleListsModal={this.toggleListsModal}
+                designateListingToSave={this.designateListingToSave}
+                removeFromList={this.removeFromList}
               />
             ))}
           </ListingBlock>

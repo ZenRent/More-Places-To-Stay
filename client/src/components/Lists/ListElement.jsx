@@ -34,12 +34,13 @@ const ListElement = (props) => {
     img,
     title,
     count,
-    changeCount,
+    addToList,
     index,
     closeModal,
+    markListingAsSaved,
   } = props;
   return (
-    <Wrapper onClick={() => { changeCount(index, 1); closeModal(); }}>
+    <Wrapper onClick={() => { addToList(index); markListingAsSaved(index); closeModal(); }}>
       <Image src={img} alt="a related destination" />
       <Details>
         {count ? <div>Any time</div> : ''}
@@ -54,6 +55,10 @@ ListElement.propTypes = {
   img: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   count: PropTypes.number.isRequired,
+  addToList: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  markListingAsSaved: PropTypes.func.isRequired,
 };
 
 export default ListElement;
