@@ -60,16 +60,6 @@ class App extends React.Component {
       });
   }
 
-  changeSize() {
-    const { setCount, currentSet } = this.state;
-    this.setState({
-      setCount: setCount === 3 ? 4 : 3,
-    });
-    this.setState({
-      currentSet: (currentSet === setCount && setCount === 4) ? 3 : currentSet,
-    });
-  }
-
   assignList(id, listIndex) {
     const { listings } = this.state;
     const newListings = listings.map((listing) => {
@@ -96,6 +86,52 @@ class App extends React.Component {
     });
   }
 
+  changeSet(increment) {
+    const { setCount, currentSet } = this.state;
+    if (currentSet >= setCount && increment === 1) {
+      this.setState({
+        currentSet: 1,
+      });
+    } else if (currentSet === 1 && increment === -1) {
+      this.setState({
+        currentSet: setCount,
+      });
+    } else {
+      this.setState({
+        currentSet: currentSet + increment,
+      });
+    }
+  }
+
+  changeSize() {
+    const { setCount, currentSet } = this.state;
+    this.setState({
+      setCount: setCount === 3 ? 4 : 3,
+    });
+    this.setState({
+      currentSet: (currentSet === setCount && setCount === 4) ? 3 : currentSet,
+    });
+  }
+
+  designateListingToSave(id) {
+    this.setState({
+      listingToMarkSaved: id,
+    });
+  }
+
+  markListingAsSaved(listIndex) {
+    const { listings, listingToMarkSaved } = this.state;
+    const newListings = listings.map((listing) => {
+      if (listing.listingId === listingToMarkSaved) {
+        listing.savedList = listIndex;
+      }
+      return listing;
+    });
+    this.setState({
+      listings: newListings,
+    });
+  }
+
   removeFromList(listingId, listIndex) {
     const { lists, listings } = this.state;
     const newLists = lists.map((list, i) => {
@@ -116,46 +152,10 @@ class App extends React.Component {
     });
   }
 
-  changeSet(increment) {
-    const { setCount, currentSet } = this.state;
-    if (currentSet >= setCount && increment === 1) {
-      this.setState({
-        currentSet: 1,
-      });
-    } else if (currentSet === 1 && increment === -1) {
-      this.setState({
-        currentSet: setCount,
-      });
-    } else {
-      this.setState({
-        currentSet: currentSet + increment,
-      });
-    }
-  }
-
   toggleListsModal() {
     const { showListsModal } = this.state;
     this.setState({
       showListsModal: !showListsModal,
-    });
-  }
-
-  designateListingToSave(id) {
-    this.setState({
-      listingToMarkSaved: id,
-    });
-  }
-
-  markListingAsSaved(listIndex) {
-    const { listings, listingToMarkSaved } = this.state;
-    const newListings = listings.map((listing) => {
-      if (listing.listingId === listingToMarkSaved) {
-        listing.savedList = listIndex;
-      }
-      return listing;
-    });
-    this.setState({
-      listings: newListings,
     });
   }
 
