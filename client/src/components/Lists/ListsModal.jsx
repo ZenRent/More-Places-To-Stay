@@ -17,7 +17,8 @@ const Modal = styled.div`
   position: absolute;
   transition: top .5s;
   opacity: ${(props) => (!props.showCreate ? '100%' : '0%')};
-  overflow-y: hidden
+  overflow-y: hidden;
+  font-weight: 300;
 `;
 
 const ModalBackdrop = styled.div`

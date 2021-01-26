@@ -19,7 +19,7 @@ const Details = styled.div`
   justify-content: center;
   align-content: flex-start;
   height: 70px;
-  padding-left: 5px;
+  padding-left: 12px;
 `;
 
 const Image = styled.img`
@@ -27,6 +27,17 @@ const Image = styled.img`
   width: 64px;
   margin: 3px 0 3px 0;
   border-radius: 4px;
+`;
+
+const ListTitle = styled.div`
+  font-weight: 500;
+`;
+
+const Dates = styled.div`
+  font-weight: 200;
+  color: rgb(122, 122, 122);
+  font-size: 14px;
+  line-height: 16px;
 `;
 
 const ListElement = (props) => {
@@ -43,8 +54,8 @@ const ListElement = (props) => {
     <Wrapper onClick={() => { addToList(index); markListingAsSaved(index); closeModal(); }}>
       <Image src={img} alt="a related destination" />
       <Details>
-        <div>Any time</div>
-        <div>{title}</div>
+        <Dates>Any time</Dates>
+        <ListTitle>{title}</ListTitle>
         <div>{`${count} stays`}</div>
       </Details>
     </Wrapper>

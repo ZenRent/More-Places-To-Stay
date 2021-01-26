@@ -126,7 +126,7 @@ class App extends React.Component {
       const newList = {
         title: newListTitle,
         count: 1,
-        thumbnailUrl: 'https://zennearby.s3-us-west-1.amazonaws.com/20.webp',
+        thumbnailUrl: `https://zennearby.s3-us-west-1.amazonaws.com/${lists.length + 1}.webp`,
         listings: [],
       };
       lists.push(newList);

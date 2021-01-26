@@ -39,7 +39,8 @@ const Details = styled.div`
   justify-content: center;
   align-content: flex-start;
   height: 70px;
-  padding-left: 5px;
+  padding-left: 12px;
+  font-weight: 500;
 `;
 
 const CreateNewList = (props) => {
