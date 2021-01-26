@@ -43,7 +43,7 @@ const createNearbyArray = () => {
       bedCount: rng(1, 8),
       thumbnailUrl: nthImageUrl(spliceUnique(photoIndices)),
       baseRate: rng(55, 965),
-      savedList: '',
+      savedList: -1,
       isSuperhost: getBoolean(),
     };
     results.push(newListing);
@@ -64,7 +64,7 @@ const seed = (qty) => {
   }
   db.Listing.insertMany(nearbyArrays)
     .then((response) => {
-      console.log('success!', response);
+      console.log('Database "morePlaces" has been seeded with Listing data!');
     })
     .catch((error) => {
       console.log(error);

@@ -8,13 +8,15 @@ margin 2px 0 0 0
 text-overflow: elipsis;
 width: 100%;
 overflow: elipsis;
+font-weight: 300;
+font-size: 15px;
+letter-spacing: 0.004em;
 `;
 const Description = styled.div`
-
 `;
 const Rate = styled.div`
 `;
-const Type = styled.div`
+const Type = styled.span`
 `;
 
 const Details = (props) => {
@@ -28,10 +30,10 @@ const Details = (props) => {
       </Type>
       <Description>{listing.description}</Description>
       <Rate>
-        <div>
+        <span>
           <b>{`$${listing.baseRate}`}</b>
           {' / night'}
-        </div>
+        </span>
       </Rate>
     </DetailsWrapper>
   );
@@ -47,7 +49,7 @@ Details.propTypes = {
     isSuperhost: PropTypes.bool,
     listingId: PropTypes.number,
     reviewCount: PropTypes.number,
-    savedList: PropTypes.string,
+    savedList: PropTypes.number,
     shareType: PropTypes.string,
     thumbnailUrl: PropTypes.string,
   }).isRequired,
