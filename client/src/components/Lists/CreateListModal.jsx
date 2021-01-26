@@ -6,11 +6,26 @@ const Modal = styled.div`
   width: 568px;
   left: calc((100% - 568px) / 2);
   top: calc((100% - 305px) / 2);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-itmes: center;
   height: 305px;
   background-color: white;
   z-index: 20;
   border-radius: 10px;
   position: absolute;
+`;
+
+const SubmitButton = styled.button`
+  width: 95%;
+  height: 48px;
+  border-radius: 12px;
+  outline: none;
+  border: none;
+  background-color: ${(props) => (props.input ? 'rgb(34, 34, 34)' : 'rgb(221, 221, 221)')};
+  color: rgb(255, 255, 255);
+  font-weight: 600;
 `;
 
 const CreateHeader = styled.div`
@@ -43,19 +58,40 @@ const ModalBackdrop = styled.div`
 
 const InputArea = styled.div`
   height: 56px;
-  width: 100%;
+  width: 95%;
   display: flex;
+  flex-flow: column nowrap;
+  border: 1px solid rgb(113, 113, 113);
+  border-radius: 12px;
+  padding: 6px;
+  &: focus {
+    border: 2px solid black;
+  }
 `;
 
 const InputField = styled.input`
   width: 100%;
+  border: none;
+  outline: none;
+  line-height: 24px;
+  height: 24px;
 `;
 
 const ModalBody = styled.div`
   height: 160px;
   display: flex;
+  flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  padding: 12px;
+`;
+
+const CharLimit = styled.div`
+  width: 95%;
+  font-size: 12px;
+  color: rgb(113, 113, 113);
+  line-height: 16px;
+  text-align: left;
 `;
 
 const ModalFooter = styled.div`
@@ -92,6 +128,7 @@ class CreateListModal extends React.Component {
 
   render() {
     const { switchModals } = this.props;
+    const { input } = this.state;
     return (
       <div>
         <ModalBackdrop onClick={switchModals} />
@@ -105,11 +142,13 @@ class CreateListModal extends React.Component {
           </CreateHeader>
           <ModalBody>
             <InputArea>
-              <InputField type="text" placeholder="hello" onChange={this.handleChange} />
+              <div>Name</div>
+              <InputField type="text" placeholder="Name" onChange={this.handleChange} />
             </InputArea>
+            <CharLimit>50 characters maximum</CharLimit>
           </ModalBody>
           <ModalFooter>
-            <button type="button" onClick={this.handleSubmit}>Submit</button>
+            <SubmitButton type="button" onClick={this.handleSubmit} input={input}>Create</SubmitButton>
           </ModalFooter>
         </Modal>
       </div>
