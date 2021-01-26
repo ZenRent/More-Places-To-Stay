@@ -46,6 +46,7 @@ class App extends React.Component {
     this.designateListingToSave = this.designateListingToSave.bind(this);
     this.markListingAsSaved = this.markListingAsSaved.bind(this);
     this.removeFromList = this.removeFromList.bind(this);
+    this.createList = this.createList.bind(this);
   }
 
   componentDidMount() {
@@ -113,6 +114,29 @@ class App extends React.Component {
     });
   }
 
+  createList(newListTitle) {
+    const { lists } = this.state;
+    let titleAlreadyExists = false;
+    lists.forEach((list) => {
+      if (list.title === newListTitle) {
+        titleAlreadyExists = true;
+      }
+    });
+    if (!titleAlreadyExists) {
+      const newList = {
+        title: newListTitle,
+        count: 1,
+        thumbnailUrl: 'https://zennearby.s3-us-west-1.amazonaws.com/20.webp',
+        listings: [],
+      };
+      lists.push(newList);
+      this.setState({
+        lists,
+      });
+      this.markListingAsSaved(lists.length);
+    }
+  }
+
   designateListingToSave(id) {
     this.setState({
       listingToMarkSaved: id,
@@ -169,7 +193,7 @@ class App extends React.Component {
     } = this.state;
     return (
       <AppWrapper>
-        {showListsModal ? <ListsModal lists={lists} toggleListsModal={this.toggleListsModal} addToList={this.addToList} markListingAsSaved={this.markListingAsSaved} /> : ''}
+        {showListsModal ? <ListsModal lists={lists} toggleListsModal={this.toggleListsModal} addToList={this.addToList} markListingAsSaved={this.markListingAsSaved} createList={this.createList} /> : ''}
         <ListingWrapper setCount={setCount}>
           <GlobalStyle />
           <TitleBar
