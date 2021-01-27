@@ -28,7 +28,7 @@ const ListingWrapper = styled.div`
 
 const axios = require('axios');
 
-class App extends React.Component {
+class MorePlaces extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -219,6 +219,6 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('App'));
+ReactDOM.render(<MorePlaces />, document.getElementById('MorePlaces'));
 
-export default App;
+export default MorePlaces;
