@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 const Modal = styled.div`
   width: 568px;
   left: calc((100% - 568px) / 2);
-  top: calc((100% - 305px) / 2);
+  top: calc(((100% - 305px) / 2) + ${(props) => (props.topHeight)}px);
+  max-width: 100%
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -105,10 +106,17 @@ class CreateListModal extends React.Component {
     super(props);
     this.state = {
       input: '',
+      topHeight: 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      topHeight: window.scrollY,
+    });
   }
 
   handleChange(e) {
@@ -128,11 +136,11 @@ class CreateListModal extends React.Component {
 
   render() {
     const { switchModals } = this.props;
-    const { input } = this.state;
+    const { input, topHeight } = this.state;
     return (
       <div>
         <ModalBackdrop onClick={switchModals} />
-        <Modal>
+        <Modal topHeight={topHeight}>
           <CreateHeader>
             <CloseButton viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" onClick={switchModals}>
               <path d="m6 6 20 20" />
