@@ -11,7 +11,7 @@ const Modal = styled.div`
   justify-content: center;
   align-itmes: center;
   height: 305px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   z-index: 30;
   border-radius: 10px;
   position: absolute;

@@ -11,7 +11,7 @@ const Modal = styled.div`
   top: ${(props) => (props.show ? 10 : 100)}%;
   left: calc((100% - 568px) / 2);
   height: 80%;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   z-index: 20;
   border-radius: 10px;
   position: absolute;
