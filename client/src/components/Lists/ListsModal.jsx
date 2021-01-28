@@ -8,11 +8,11 @@ import CreateListModal from './CreateListModal';
 
 const Modal = styled.div`
   width: 568px;
-  top: ${(props) => (props.show ? 10 : 100)}%;
+  top: calc((${(props) => ((props.show ? 10 : 100))}%) + ${(props) => (props.pageTop)}px) ;
   left: calc((100% - 568px) / 2);
   height: 80%;
-  background-color: white;
-  z-index: 10;
+  background-color: rgb(255, 255, 255);
+  z-index: 20;
   border-radius: 10px;
   position: absolute;
   transition: top .5s;
@@ -28,7 +28,7 @@ const ModalBackdrop = styled.div`
   width:100%;
   height: 100%;
   background: ${(props) => (props.show ? 'rgba(0, 0, 0, 0.6)' : 'none')};
-  z-index: 5;
+  z-index: 15;
   transition: background .5s;
 `;
 
@@ -72,6 +72,7 @@ class ListsModal extends React.Component {
     this.state = {
       show: false,
       showCreate: false,
+      pageTop: 0,
     };
     this.toggleView = this.toggleView.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -79,6 +80,10 @@ class ListsModal extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({
+      // pageTop: document.getElementsByTagName('body')[0].getBoundingClientRect().top,
+      pageTop: window.scrollY,
+    });
     setTimeout(this.toggleView, 0);
   }
 
@@ -110,7 +115,7 @@ class ListsModal extends React.Component {
       createList,
       toggleListsModal,
     } = this.props;
-    const { show, showCreate } = this.state;
+    const { show, showCreate, pageTop } = this.state;
     return (
       <div>
         <ModalBackdrop
@@ -118,7 +123,7 @@ class ListsModal extends React.Component {
           onClick={this.closeModal}
         />
         {showCreate ? <CreateListModal switchModals={this.switchModals} createList={createList} toggleListsModal={toggleListsModal} /> : ''}
-        <Modal show={show} showCreate={showCreate}>
+        <Modal show={show} showCreate={showCreate} pageTop={pageTop}>
           <ListHeader>
             <CloseButton viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" onClick={this.closeModal}>
               <path d="m6 6 20 20" />
