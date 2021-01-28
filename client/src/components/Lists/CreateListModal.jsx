@@ -12,7 +12,7 @@ const Modal = styled.div`
   align-itmes: center;
   height: 305px;
   background-color: white;
-  z-index: 20;
+  z-index: 30;
   border-radius: 10px;
   position: absolute;
 `;
@@ -53,7 +53,7 @@ const ModalBackdrop = styled.div`
   width:100%;
   height: 100%;
   background: none;
-  z-index: 15;
+  z-index: 26;
 `;
 
 const InputArea = styled.div`

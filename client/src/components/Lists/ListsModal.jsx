@@ -12,7 +12,7 @@ const Modal = styled.div`
   left: calc((100% - 568px) / 2);
   height: 80%;
   background-color: white;
-  z-index: 10;
+  z-index: 20;
   border-radius: 10px;
   position: absolute;
   transition: top .5s;
@@ -28,7 +28,7 @@ const ModalBackdrop = styled.div`
   width:100%;
   height: 100%;
   background: ${(props) => (props.show ? 'rgba(0, 0, 0, 0.6)' : 'none')};
-  z-index: 5;
+  z-index: 15;
   transition: background .5s;
 `;
 
