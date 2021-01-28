@@ -7,11 +7,12 @@ const NavBar = styled.span`
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  padding: 0 3px 0 6px;
 `;
 
 const NavButton = styled.button`
   type: button;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.01);
   border-radius: 50% !important;;
   background-color: rgba(255, 255, 255, 0.9);
   color: black;
@@ -20,9 +21,10 @@ const NavButton = styled.button`
   box-shadow: transparent 0px 0px 0px 1px, transparent 0px 0px 0px 4px, rgba(0, 0, 0, 0.18) 0px 2px 4px;
   margin-left: 3px;
   cursor: pointer;
-  &:focus {
-    outline: none;
-    box-shadow: 0px 0px 2px gray;
+  outline: none;
+  &:active {
+    box-shadow: 0px 0px 1px gray;
+  }
 `;
 
 const TitleWrapper = styled.div`

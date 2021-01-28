@@ -16,6 +16,9 @@ const HeartIcon = styled.svg`
   z-index: 2;
   padding: 5px 6px 4px 6px;
   margin: 8px 12px 0 0;
+  &:active {
+    transform: scale(.92);
+  };
 `;
 
 class Heart extends React.Component {
