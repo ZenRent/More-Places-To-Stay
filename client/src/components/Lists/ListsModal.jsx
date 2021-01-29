@@ -72,7 +72,7 @@ class ListsModal extends React.Component {
     this.state = {
       show: false,
       showCreate: false,
-      pageTop: 0,
+      pageTop: window.scrollY,
     };
     this.toggleView = this.toggleView.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -80,10 +80,6 @@ class ListsModal extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      // pageTop: document.getElementsByTagName('body')[0].getBoundingClientRect().top,
-      pageTop: window.scrollY,
-    });
     setTimeout(this.toggleView, 0);
   }
 
