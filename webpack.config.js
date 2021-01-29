@@ -1,7 +1,6 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'development',
   entry: './client/src/components/App',
   output: {
     filename: 'bundle.js',
