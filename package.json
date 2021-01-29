@@ -9,7 +9,8 @@
   "scripts": {
     "test": "jest --coverage",
     "start": "nodemon server/index.js",
-    "react-dev": "npx webpack --config webpack.config.js -w",
+    "build": "npx webpack --config webpack.config.js --mode=production",
+    "react-dev": "npx webpack --config webpack.config.js -w --mode=development",
     "db:setup": "node database/index.js",
     "seed": "node database/seed.js"
   },
