@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  app:
+    image: tdomingo/more-places-to-stay_app
+    restart: on-failure
+    ports:
+      - 80:3004
+    links:
+      - mongo
+    command: sh -c 'npm run dock'
+  mongo:
+    image: tdomingo/mongo
+    ports:
+      - "27017:27017"
