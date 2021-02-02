@@ -12,7 +12,8 @@
     "build": "npx webpack --config webpack.config.js --mode=production",
     "react-dev": "npx webpack --config webpack.config.js -w --mode=development",
     "db:setup": "node database/index.js",
-    "seed": "node database/seed.js"
+    "seed": "node database/seed.js",
+    "dock": "node database/seed.js & node server/index.js"
   },
   "repository": {
     "type": "git",

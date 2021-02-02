@@ -2,6 +2,10 @@
 const mongoose = require('mongoose');
 
 const db = mongoose.connect(
+  // use this address for dockerizing/deploying:
+  // 'mongodb://mongo:27017/morePlaces','
+
+  // use this address for development on your local machine
   'mongodb://localhost/morePlaces',
   { useNewUrlParser: true, useUnifiedTopology: true },
 );

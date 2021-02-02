@@ -63,7 +63,7 @@ const seed = (qty) => {
     i += 1;
   }
   db.Listing.insertMany(nearbyArrays)
-    .then((response) => {
+    .then(() => {
       console.log('Database "morePlaces" has been seeded with Listing data!');
     })
     .catch((error) => {
