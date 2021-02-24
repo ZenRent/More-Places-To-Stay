@@ -1,6 +1,6 @@
 # More Places to Stay
 
-> Render a component to the web that mimics the "More Places to Stay" Component of popular home-sharing sites like Airbnb
+> A interactive photo carousel that allows you to scroll through sets of related listings, as well as Like them and save them to user-created lists.
 
 ## Related Projects
 
@@ -9,28 +9,27 @@
 
 ## Table of Contents
 
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
+1. [Demo](#demo)
+2. [Dependencies](#dependencies)
+3. [Setup](#setup)
 
-## Usage
+## Demo
+![](MorePlacesDemoMed.gif)
 
-> Some usage instructions
+## Dependencies
+- webpack
+- nodemon
 
-## Requirements
-
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
-
-## Development
-
-### Installing Dependencies
+## Setup
 
 From within the root directory:
 
 ```sh
-npm install -g webpack
 npm install
+npm run seed
+npm run build
+npm start
 ```
+
+
+
