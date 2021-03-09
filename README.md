@@ -1,20 +1,14 @@
 # More Places to Stay
 
-> A interactive photo carousel that allows you to scroll through sets of related listings, as well as Like them and save them to user-created lists.
+> An interactive photo carousel that allows you to scroll through sets of related listings, as well as Like them and save them to user-created lists.
+
+![](MorePlacesDemoMed.gif)
 
 ## Related Projects
 
   - https://github.com/ZenRent/Gallery
   - https://github.com/ZenRent/Reviews
 
-## Table of Contents
-
-1. [Demo](#demo)
-2. [Dependencies](#dependencies)
-3. [Setup](#setup)
-
-## Demo
-![](MorePlacesDemoMed.gif)
 
 ## Dependencies
 - webpack
